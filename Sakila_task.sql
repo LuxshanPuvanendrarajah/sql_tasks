@@ -41,8 +41,8 @@ ORDER BY COUNT(f.film_id) DESC;
 -- Question 14 When is 'Academy Dinosaur' due?
 SELECT f.title , DATE_ADD(r.rental_date, INTERVAL f.rental_duration DAY) AS due_date
 FROM inventory i
-INNER JOIN film f ON i.film_id=f.film_id
-INNER JOIN rental r ON i.inventory_id=r.inventory_id
+JOIN film f ON i.film_id=f.film_id
+JOIN rental r ON i.inventory_id=r.inventory_id
 WHERE f.title ='Academy Dinosaur' AND r.return_date IS NULL;
 -- Question 15 What is the average runtime of all films?
 SELECT AVG(length) FROM Film;
