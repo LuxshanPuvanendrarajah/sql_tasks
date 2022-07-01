@@ -19,8 +19,13 @@ JOIN users u ON u.id = r.user_id
 JOIN occupations o ON o.id = u.occupation_id 
 WHERE g.`name` = "Sci-Fi" AND u.age = 24 AND u.gender = "M" AND o.`name` = "Student" AND r.rating = 5;
 -- List the unique titles of each of the movies released on the most popular release day.
-
-
+SELECT title FROM movies
+ WHERE release_date = (
+	SELECT release_date FROM movies
+    GROUP BY release_date
+    ORDER BY count(id) DESC
+    LIMIT 1
+    );
 -- Find the total number of movies in each genre; list the results in ascending numeric order.
 SELECT g.`name`, COUNT(m.id) 
 FROM movies m
